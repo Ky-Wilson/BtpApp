@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Modernize Free</title>
-  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
-  <link rel="stylesheet" href="../assets/css/styles.min.css" />
+  <link rel="shortcut icon" type="image/png" href="{{ asset('assets/users/images/logos/favicon.png') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/users/css/styles.min.css') }}" />
 </head>
 
 <body>
@@ -19,10 +19,11 @@
             <div class="card mb-0">
               <div class="card-body">
                 <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
+                  <img src="{{ asset('assets/users/images/logos/dark-logo.svg') }}" width="180" alt="">
                 </a>
                 <p class="text-center">Your Social Campaigns</p>
-                <form>
+                @yield('content')
+                {{-- <form>
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Username</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -45,7 +46,7 @@
                     <p class="fs-4 mb-0 fw-bold">New to Modernize?</p>
                     <a class="text-primary fw-bold ms-2" href="./authentication-register.html">Create an account</a>
                   </div>
-                </form>
+                </form> --}}
               </div>
             </div>
           </div>
@@ -53,8 +54,8 @@
       </div>
     </div>
   </div>
-  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ asset('assets/users/libs/jquery/dist/jquery.min.js') }}"></script>
+  <script src="{{ asset('assets/users/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>
