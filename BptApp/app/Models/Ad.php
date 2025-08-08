@@ -43,4 +43,19 @@ class Ad extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+      /**
+     * Accesseur pour obtenir le chemin de la première image.
+     */
+    public function getFirstImageAttribute()
+    {
+        // On s'assure que le champ "images" est bien un tableau
+        if (is_array($this->images) && !empty($this->images)) {
+            return $this->images[0];
+        }
+
+        // Retourne un chemin d'image par défaut si aucune image n'est trouvée
+        return 'path/to/default/image.jpg'; 
+    }
+   
 }

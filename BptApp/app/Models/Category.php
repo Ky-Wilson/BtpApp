@@ -17,4 +17,12 @@ class Category extends Model
     protected $fillable = [
         'name',
     ];
+
+     /**
+     * Une catégorie a plusieurs annonces.
+     */
+    public function ads()
+    {
+        return $this->hasMany(Ad::class);
+    }
 }

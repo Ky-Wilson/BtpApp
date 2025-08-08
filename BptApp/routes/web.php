@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TerrainController;
 use App\Http\Controllers\Users\AdController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -20,7 +21,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -64,3 +64,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/ads/{ad}', [AdController::class, 'update'])->name('users.ads.update');
     Route::delete('/ads/{ad}', [AdController::class, 'destroy'])->name('users.ads.destroy');
 });
+
+
+// Route pour afficher les annonces de terrains
+Route::get('terrains', [TerrainController::class, 'index'])->name('terrains.index');
+// Route pour afficher les détails d'un terrain
+Route::get('/terrains/{ad}', [TerrainController::class, 'show'])->name('terrains.show');
