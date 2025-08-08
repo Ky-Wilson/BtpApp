@@ -17,6 +17,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('role')->default('visiteur');
+            $table->boolean('is_active')->default(false);
+            $table->string('logo')->nullable(); // Ajout du champ logo
+            $table->string('coordonnees')->nullable(); // Ajout du champ coordonnees
+            $table->text('description')->nullable(); // Ajout du champ description
             $table->rememberToken();
             $table->timestamps();
         });

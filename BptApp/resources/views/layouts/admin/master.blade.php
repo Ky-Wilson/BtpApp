@@ -19,9 +19,13 @@
             <!--  navbar -->
             @include('layouts.admin.inc.admin-navbar')
             <div class="container-fluid">
+                
                     @yield('content')
+               
                 <!--  footer -->
+                {{-- <div class="row">
                 @include('layouts.admin.inc.admin-footer')
+                 </div> --}}
             </div>
         </div>
   </div>

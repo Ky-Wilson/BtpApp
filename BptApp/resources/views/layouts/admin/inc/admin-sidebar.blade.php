@@ -30,21 +30,66 @@
               <span class="hide-menu">UI COMPONENTS</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+            <a class="sidebar-link has-arrow" href="#" aria-expanded="false">
                 <span>
-                  <i class="ti ti-article"></i>
+                    <i class="ti ti-users"></i>
                 </span>
-                <span class="hide-menu">Buttons</span>
-              </a>
+                <span class="hide-menu">Gestion des utilisateurs</span>
+            </a>
+                <ul aria-expanded="false" class="collapse first-level">
+                    <li class="sidebar-item">
+                        <a href="{{ route('admin.users.create') }}" class="sidebar-link">
+                            <div class="round-16 d-flex align-items-center justify-content-center">
+                                <i class="ti ti-plus"></i>
+                            </div>
+                            <span class="hide-menu">Créer un utilisateur</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="{{ route('admin.users.index') }}" class="sidebar-link">
+                            <div class="round-16 d-flex align-items-center justify-content-center">
+                                <i class="ti ti-list"></i>
+                            </div>
+                            <span class="hide-menu">Liste des utilisateurs</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
+          <li class="sidebar-item">
+    <a class="sidebar-link has-arrow" href="#" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#collapseCategories">
+        <span>
+            <i class="ti ti-layout-list"></i>
+        </span>
+        <span class="hide-menu">Gestion des catégories</span>
+    </a>
+    <ul id="collapseCategories" class="collapse first-level" aria-expanded="false">
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('admin.categories.index') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-alert-circle"></i>
+                    <i class="ti ti-list"></i>
                 </span>
-                <span class="hide-menu">Alerts</span>
-              </a>
-            </li>
+                <span class="hide-menu">Liste des catégories</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('admin.categories.create') }}" aria-expanded="false">
+                <span>
+                    <i class="ti ti-plus"></i>
+                </span>
+                <span class="hide-menu">Créer une catégorie</span>
+            </a>
+        </li>
+    </ul>
+</li>
+
+<li class="sidebar-item">
+    <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
+        <span>
+            <i class="ti ti-alert-circle"></i>
+        </span>
+        <span class="hide-menu">Alerts</span>
+    </a>
+</li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
                 <span>

@@ -30,12 +30,38 @@
               <span class="hide-menu">UI COMPONENTS</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#collapseAds">
+        <span>
+            <i class="ti ti-clipboard-list"></i>
+        </span>
+        <span class="hide-menu">Gestion des annonces</span>
+    </a>
+    <ul id="collapseAds" class="collapse first-level">
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('users.ads.index') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-article"></i>
+                    <i class="ti ti-list"></i>
                 </span>
-                <span class="hide-menu">Buttons</span>
-              </a>
+                <span class="hide-menu">Liste des annonces</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('users.ads.create') }}" aria-expanded="false">
+                <span>
+                    <i class="ti ti-plus"></i>
+                </span>
+                <span class="hide-menu">Créer une annonce</span>
+            </a>
+        </li>
+    </ul>
+</li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+                    <span>
+                        <i class="ti ti-article"></i>
+                    </span>
+                    <span class="hide-menu">Buttons</span>
+                </a>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">

@@ -21,7 +21,7 @@
             <div class="container-fluid">
                     @yield('content')
                 <!--  footer -->
-                @include('layouts.users.inc.users-footer')
+                {{-- @include('layouts.users.inc.users-footer') --}}
             </div>
         </div>
   </div>
