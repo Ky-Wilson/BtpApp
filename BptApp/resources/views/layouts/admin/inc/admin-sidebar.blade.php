@@ -18,7 +18,7 @@
               <span class="hide-menu">Home</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./index.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('admin.dashboard') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-layout-dashboard"></i>
                 </span>
@@ -83,11 +83,11 @@
 </li>
 
 <li class="sidebar-item">
-    <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
+    <a class="sidebar-link" href="{{ route('admin.ads.index') }}" aria-expanded="false">
         <span>
-            <i class="ti ti-alert-circle"></i>
+            <i class="ti ti-list-check"></i>
         </span>
-        <span class="hide-menu">Alerts</span>
+        <span class="hide-menu">Liste des annonces</span>
     </a>
 </li>
             <li class="sidebar-item">

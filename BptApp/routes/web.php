@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Users\AdController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\AdGestionController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Users\UDashboardController;
 
@@ -44,7 +45,11 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('admin.categories.update');
     Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
 
-   
+     // Gestion des annonces par l'admin
+    Route::get('/ads', [AdGestionController::class, 'index'])->name('admin.ads.index');
+    Route::get('/ads/{ad}', [AdGestionController::class, 'show'])->name('admin.ads.show'); // Nouvelle route
+    Route::put('/ads/{ad}/approve', [AdGestionController::class, 'approve'])->name('admin.ads.approve');
+    Route::delete('/ads/{ad}', [AdGestionController::class, 'destroy'])->name('admin.ads.destroy'); // Nouvelle route
 });
 
 
