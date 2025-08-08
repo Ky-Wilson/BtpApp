@@ -15,7 +15,7 @@ use App\Http\Controllers\Users\UDashboardController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('site.accueil');
 });
 
 Auth::routes();
