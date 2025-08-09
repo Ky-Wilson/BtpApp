@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdGestionController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\ImmeubleController;
 use App\Http\Controllers\MaisonController;
 use App\Http\Controllers\Users\UDashboardController;
 
@@ -77,3 +78,9 @@ Route::get('/terrains/{ad}', [TerrainController::class, 'show'])->name('terrains
 Route::get('maisons', [MaisonController::class, 'index'])->name('maisons.index');
 // Route pour afficher les détails d'un terrain
 Route::get('/maisons/{ad}', [MaisonController::class, 'show'])->name('maisons.show');
+
+
+// Route pour afficher les annonces de immeubles
+Route::get('immeubles', [ImmeubleController::class, 'index'])->name('immeubles.index');
+// Route pour afficher les détails d'un immeuble
+Route::get('/immeubles/{ad}', [ImmeubleController::class, 'show'])->name('immeubles.show');
