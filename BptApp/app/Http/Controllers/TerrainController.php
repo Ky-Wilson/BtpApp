@@ -15,9 +15,17 @@ class TerrainController extends Controller
     {
         // Récupérer la catégorie 'terrain'
         $category = Category::where('name', 'terrain')->firstOrFail();
-        
-        // Démarrer la requête pour les annonces de terrains
-        $query = $category->ads()->where('is_approved', true);
+
+        // Démarrer la requête pour les annonces principales, triées par les plus récentes
+        $query = $category->ads()->where('is_approved', true)->latest();
+
+         // Récupération des annonces pour le carrousel (3 aléatoires)
+        $carousel_ads = $category->ads()->where('is_approved', true)->inRandomOrder()->limit(3)->get();
+
+        // Appliquer le filtre de localisation si un terme de recherche est présent
+        if ($request->has('location')) {
+            $query->where('location', 'like', '%' . $request->location . '%');
+        }
 
         // Appliquer le filtre de prix si un paramètre est présent dans la requête
         if ($request->has('price_range')) {
@@ -36,14 +44,17 @@ class TerrainController extends Controller
                     break;
             }
         }
-        
-        // Récupérer les annonces paginées
+
+        // Récupérer les 12 dernières annonces paginées
         $ads = $query->paginate(12);
+
+        // Récupérer une collection distincte de toutes les annonces non filtrées pour la section "vedette"
+        $featured_ads = $category->ads()->where('is_approved', true)->latest()->paginate(12);
 
         // Récupérer toutes les catégories pour la navbar
         $categories = Category::all();
 
-        return view('site.terrains.index', compact('ads', 'category', 'categories'));
+        return view('site.terrains.index', compact('ads', 'featured_ads', 'category', 'categories', 'carousel_ads'));
     }
 
     /**
