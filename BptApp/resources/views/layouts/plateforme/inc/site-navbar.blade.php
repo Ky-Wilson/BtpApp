@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                 <div class="navbar-nav mx-auto">
                     <a href="{{-- {{ route('home') }} --}}" class="nav-item nav-link active">Accueil</a>
-                    <a href="{{-- {{ route('ads.index') }} --}}" class="nav-item nav-link">Toutes les annonces</a>
+                    <a href="{{ route('maisons.index') }}" class="nav-item nav-link">Maisons</a>
                     
                     <a href="{{ route('terrains.index') }}" class="nav-item nav-link">Terrains</a>
                     

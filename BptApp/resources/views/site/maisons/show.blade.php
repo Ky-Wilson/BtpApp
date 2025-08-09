@@ -4,7 +4,7 @@
     <h1 class="text-center text-white display-6">{{ $ad->title }}</h1>
     <ol class="breadcrumb justify-content-center mb-0">
         <li class="breadcrumb-item"><a href="{{-- {{ route('home') }} --}}">Accueil</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('terrains.index') }}">Terrains</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('maisons.index') }}">Maisons</a></li>
         <li class="breadcrumb-item active text-white">{{ $ad->title }}</li>
     </ol>
 </div>
@@ -87,7 +87,15 @@
                                                     <p class="mb-0">Surface</p>
                                                 </div>
                                                 <div class="col-6">
-                                                    <p class="mb-0">{{ $ad->surface }}</p>
+                                                    <p class="mb-0">{{ $ad->surface }} m²</p>
+                                                </div>
+                                            </div>
+                                            <div class="row bg-light text-center align-items-center justify-content-center py-2">
+                                                <div class="col-6">
+                                                    <p class="mb-0">Nombre de pièces</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <p class="mb-0">{{ $ad->nombre_de_pieces }}</p>
                                                 </div>
                                             </div>
                                         </div>
