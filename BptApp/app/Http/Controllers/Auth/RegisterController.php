@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Storage;
+use App\Notifications\NewUserRegisteredNotification;
 
 class RegisterController extends Controller
 {
@@ -38,7 +39,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'logo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'], // Validation pour le fichier image
+            'logo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'coordonnees' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
         ]);
@@ -51,7 +52,8 @@ class RegisterController extends Controller
             $logoPath = $data['logo']->store('logos', 'public');
         }
 
-        return User::create([
+        // Crée l'utilisateur et le stocke dans une variable
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -61,5 +63,16 @@ class RegisterController extends Controller
             'coordonnees' => $data['coordonnees'] ?? null,
             'description' => $data['description'] ?? null,
         ]);
+
+        // Récupérer l'administrateur
+        $admin = User::where('role', 'admin')->first();
+
+        // Si un administrateur est trouvé, on lui envoie la notification
+        if ($admin) {
+            $admin->notify(new NewUserRegisteredNotification($user));
+        }
+        
+        // Retourne l'objet User créé
+        return $user;
     }
 }

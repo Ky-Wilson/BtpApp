@@ -33,42 +33,10 @@ class UserController extends Controller
         return view('admin.users.create');
     }
 
-    /**
-     * Enregistre un nouvel utilisateur.
-     */
-   /*  public function store(Request $request)
+    public function show(User $user)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|string|in:admin,entreprise,visiteur',
-            'is_active' => 'nullable|boolean',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'coordonnees' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-        ]);
-        
-        $logoPath = null;
-        if ($request->hasFile('logo')) {
-            $logoPath = $request->file('logo')->store('logos', 'public');
-        }
-
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => $request->role,
-            'is_active' => $request->is_active,
-            'logo' => $logoPath,
-            'coordonnees' => $request->coordonnees,
-            'description' => $request->description,
-        ]);
-
-        return redirect()->route('admin.users.index')->with('success', 'Utilisateur créé avec succès.');
+        return view('admin.users.show', compact('user'));
     }
-        
- */
     /**
      * Affiche le formulaire pour modifier un utilisateur.
      */

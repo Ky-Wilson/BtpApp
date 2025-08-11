@@ -11,6 +11,7 @@ use App\Http\Controllers\ImmeubleController;
 use App\Http\Controllers\Users\AdController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AppartementController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdGestionController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -41,6 +42,8 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/users/create', [UserController::class, 'create'])->name('admin.users.create');
     // Enregistrement d'un nouvel utilisateur
     Route::post('/users', [UserController::class, 'store'])->name('admin.users.store');
+    // Route manquante pour afficher le profil d'un utilisateur
+    Route::get('/admin/users/{user}', [UserController::class, 'show'])->name('admin.users.show');
 
     // Routes pour la gestion des catégories
     Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
@@ -54,7 +57,10 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/ads', [AdGestionController::class, 'index'])->name('admin.ads.index');
     Route::get('/ads/{ad}', [AdGestionController::class, 'show'])->name('admin.ads.show'); // Nouvelle route
     Route::put('/ads/{ad}/approve', [AdGestionController::class, 'approve'])->name('admin.ads.approve');
-    Route::delete('/ads/{ad}', [AdGestionController::class, 'destroy'])->name('admin.ads.destroy'); // Nouvelle route
+    Route::delete('/ads/{ad}', [AdGestionController::class, 'destroy'])->name('admin.ads.destroy'); 
+
+     Route::get('/notifications/users', [NotificationController::class, 'index'])->name('notifications.users.index');
+    Route::put('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
 });
 
 
