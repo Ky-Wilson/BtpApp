@@ -19,7 +19,7 @@
     </head>
     <body>
         @include('layouts.plateforme.inc.site-navbar')
-        @include('layouts.plateforme.inc.site-modal')
+        {{-- @include('layouts.plateforme.inc.site-modal') --}}
         @yield('content')
         @include('layouts.plateforme.inc.site-footer')
         

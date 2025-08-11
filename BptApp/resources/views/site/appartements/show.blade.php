@@ -4,7 +4,7 @@
     <h1 class="text-center text-white display-6">{{ $ad->title }}</h1>
     <ol class="breadcrumb justify-content-center mb-0">
         <li class="breadcrumb-item"><a href="{{-- {{ route('home') }} --}}">Accueil</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('immeubles.index') }}">immeubles</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('appartements.index') }}">appartement</a></li>
         <li class="breadcrumb-item active text-white">{{ $ad->title }}</li>
     </ol>
 </div>

@@ -3,14 +3,17 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BureauController;
+use App\Http\Controllers\MaisonController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\TerrainController;
+use App\Http\Controllers\ImmeubleController;
 use App\Http\Controllers\Users\AdController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\AppartementController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdGestionController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\ImmeubleController;
-use App\Http\Controllers\MaisonController;
 use App\Http\Controllers\Users\UDashboardController;
 
 
@@ -84,3 +87,25 @@ Route::get('/maisons/{ad}', [MaisonController::class, 'show'])->name('maisons.sh
 Route::get('immeubles', [ImmeubleController::class, 'index'])->name('immeubles.index');
 // Route pour afficher les détails d'un immeuble
 Route::get('/immeubles/{ad}', [ImmeubleController::class, 'show'])->name('immeubles.show');
+
+
+
+// Route pour afficher les annonces de bureaux
+Route::get('bureaux', [BureauController::class, 'index'])->name('bureaux.index');
+// Route pour afficher les détails d'un bureaux
+Route::get('/bureau/{ad}', action: [BureauController::class, 'show'])->name('bureaux.show');
+
+
+
+// Route pour afficher les annonces d'appartement
+Route::get('appartements', [AppartementController::class, 'index'])->name('appartements.index');
+// Route pour afficher les détails d'un bureaux
+Route::get('/appartements/{ad}', action: [AppartementController::class, 'show'])->name('appartements.show');
+
+
+// Route pour le formulaire de notation
+Route::get('/noter', [RatingController::class, 'create'])->name('ratings.create');
+Route::post('/noter', [RatingController::class, 'store'])->name('ratings.store');
+
+// Route pour récupérer les annonces d'une entreprise via AJAX
+Route::get('/api/entreprises/{user}/annonces', [RatingController::class, 'getAdsByUser']);
