@@ -56,11 +56,11 @@
     </ul>
 </li>
             <li class="sidebar-item">
-                <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+                <a class="sidebar-link" href="{{ route('users.ratings.index') }}" aria-expanded="false">
                     <span>
                         <i class="ti ti-article"></i>
                     </span>
-                    <span class="hide-menu">Buttons</span>
+                    <span class="hide-menu">Commentaires</span>
                 </a>
             </li>
             <li class="sidebar-item">

@@ -1,26 +1,28 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\BureauController;
-use App\Http\Controllers\MaisonController;
-use App\Http\Controllers\RatingController;
 use App\Http\Controllers\AccueilController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\TerrainController;
-use App\Http\Controllers\ImmeubleController;
-use App\Http\Controllers\Users\AdController;
+use App\Http\Controllers\Admin\AdAppointmentController;
+use App\Http\Controllers\Admin\AdGestionController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\AdNotificationController;
 use App\Http\Controllers\AppartementController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\BureauController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImmeubleController;
+use App\Http\Controllers\MaisonController;
 use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\AdNotificationController;
-use App\Http\Controllers\Admin\AdGestionController;
-use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\RatingController;
+use App\Http\Controllers\TerrainController;
+use App\Http\Controllers\Users\AdController;
 use App\Http\Controllers\Users\UDashboardController;
-use App\Http\Controllers\Admin\AdAppointmentController;
+use App\Http\Controllers\Users\UsRatingController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -87,6 +89,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/ads/{ad}/edit', [AdController::class, 'edit'])->name('users.ads.edit');
     Route::put('/ads/{ad}', [AdController::class, 'update'])->name('users.ads.update');
     Route::delete('/ads/{ad}', [AdController::class, 'destroy'])->name('users.ads.destroy');
+
+    // Route pour lister toutes les notes de toutes les annonces
+    Route::get('/ratings', [UsRatingController::class, 'index'])->name('users.ratings.index');
+    // Route pour afficher les notes d'une annonce
+    Route::get('/ads/{adId}/ratings', [UsRatingController::class, 'showRatings'])->name('users.ads.ratings');
 });
 
 

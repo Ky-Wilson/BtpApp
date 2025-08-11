@@ -65,5 +65,13 @@ class Ad extends Model
     {
         return $this->hasMany(Appointment::class);
     }
+
+    /**
+     * Obtenez les notes pour l'annonce.
+     */
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
    
 }
