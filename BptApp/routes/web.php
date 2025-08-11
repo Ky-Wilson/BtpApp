@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BureauController;
 use App\Http\Controllers\MaisonController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\AccueilController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TerrainController;
 use App\Http\Controllers\ImmeubleController;
 use App\Http\Controllers\Users\AdController;
@@ -24,9 +26,7 @@ use App\Http\Controllers\Admin\AdAppointmentController;
 
 
 
-Route::get('/', function () {
-    return view('site.accueil');
-});
+Route::get('/', [AccueilController::class, 'index'])->name('bienvenue');
 
 Auth::routes();
 
@@ -130,3 +130,6 @@ Route::post('/noter', [RatingController::class, 'store'])->name('ratings.store')
 Route::get('/api/entreprises/{user}/annonces', [RatingController::class, 'getAdsByUser']);
 
 Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
+
+Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.show');
+Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.send');

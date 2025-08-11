@@ -14,7 +14,7 @@
     </div>
     <div class="container px-0">
         <nav class="navbar navbar-light bg-white navbar-expand-xl">
-            <a href="{{-- {{ route('home') }} --}}" class="navbar-brand"><h1 class="text-primary display-6">GestImmo</h1></a>
+            <a href="{{ route('bienvenue') }}" class="navbar-brand"><h1 class="text-primary display-6">GestImmo</h1></a>
             <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars text-primary"></span>
             </button>
@@ -29,7 +29,7 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Contacts</a>
                         <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                            <a href="cart.html" class="dropdown-item">Besoin d'assistance</a>
+                            <a href="{{ route('contact.show') }}" class="dropdown-item">Besoin d'assistance</a>
                             <a href="{{ route('ratings.create') }}" class="dropdown-item">Notez une entreprise</a>
                             
                         </div>
