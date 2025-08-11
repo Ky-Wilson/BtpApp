@@ -19,9 +19,11 @@ use App\Http\Controllers\RatingController;
 use App\Http\Controllers\TerrainController;
 use App\Http\Controllers\Users\AdController;
 use App\Http\Controllers\Users\UDashboardController;
+use App\Http\Controllers\Users\UsAppointmentController;
 use App\Http\Controllers\Users\UsRatingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -94,7 +96,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/ratings', [UsRatingController::class, 'index'])->name('users.ratings.index');
     // Route pour afficher les notes d'une annonce
     Route::get('/ads/{adId}/ratings', [UsRatingController::class, 'showRatings'])->name('users.ads.ratings');
-});
+
+      Route::get('/commentaires', [UsAppointmentController::class, 'index'])->name('users.appointments.index');
+  });
 
 
 // Route pour afficher les annonces de terrains
