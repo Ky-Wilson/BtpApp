@@ -11,11 +11,14 @@ use App\Http\Controllers\ImmeubleController;
 use App\Http\Controllers\Users\AdController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AppartementController;
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\AdNotificationController;
 use App\Http\Controllers\Admin\AdGestionController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Users\UDashboardController;
+use App\Http\Controllers\Admin\AdAppointmentController;
 
 
 
@@ -61,6 +64,16 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 
      Route::get('/notifications/users', [NotificationController::class, 'index'])->name('notifications.users.index');
     Route::put('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+
+    // Routes pour les notifications d'annonces
+    Route::get('/notifications/ads', [AdNotificationController::class, 'index'])->name('notifications.ads.index');
+    Route::put('/notifications/ads/{id}/read', [AdNotificationController::class, 'markAsRead'])->name('notifications.ads.read');
+
+    // Route pour les statistiques des utilisateurs
+    Route::get('/admin/stats', [UserController::class, 'stats'])->name('admin.stats.index');
+
+    // Route pour la liste des rendez-vous
+    Route::get('/rdv', [AdAppointmentController::class, 'index'])->name('admin.appointments.index');
 });
 
 
@@ -115,3 +128,5 @@ Route::post('/noter', [RatingController::class, 'store'])->name('ratings.store')
 
 // Route pour récupérer les annonces d'une entreprise via AJAX
 Route::get('/api/entreprises/{user}/annonces', [RatingController::class, 'getAdsByUser']);
+
+Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');

@@ -18,7 +18,7 @@
         </div>
     @else
         <div class="row">
-            @foreach ($ads as $ad)
+            @foreach ($ads->items() as $ad)
             <div class="col-sm-6 col-xl-3">
                 <div class="card overflow-hidden rounded-2">
                     <div class="position-relative">
@@ -49,9 +49,14 @@
                         <a href="{{ route('users.ads.show', $ad) }}" class="btn btn-primary w-100 mt-3">Détails</a>
                     </div>
                 </div>
+               
             </div>
             @endforeach
         </div>
     @endif
+    <div class="d-flex justify-content-center mt-4">
+        {{ $ads->links() }}
+    </div>
 </div>
+ 
 @endsection

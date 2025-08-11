@@ -63,7 +63,8 @@ class ImmeubleController extends Controller
     {
         // Récupérer toutes les catégories pour la navbar
         $categories = Category::all();
-
+// Incrémente le compteur de vues de l'annonce
+        $ad->increment('views_count');
         return view('site.immeubles.show', compact('ad', 'categories'));
     }
 }

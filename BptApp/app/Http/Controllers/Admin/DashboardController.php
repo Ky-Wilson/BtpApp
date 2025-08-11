@@ -2,47 +2,52 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Ad;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Models\Rating;
+use App\Http\Controllers\Controller;
+use App\Models\Appointment;
 
 class DashboardController extends Controller
 {
     public function index()
     {
+        // Données existantes
         $recentAds = Ad::with('user')->latest()->take(5)->get();
         $recentUsers = User::latest()->take(5)->get();
+        $latestRatings = Rating::latest()->take(3)->get();
         
-        $currentMonthAds = Ad::whereMonth('created_at', now()->month)
-                               ->whereYear('created_at', now()->year)
-                               ->count();
-        
-        $previousMonthAds = Ad::whereMonth('created_at', now()->subMonth()->month)
-                                ->whereYear('created_at', now()->subMonth()->year)
-                                ->count();
+        $currentMonthAds = Ad::whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
+        $previousMonthAds = Ad::whereMonth('created_at', now()->subMonth()->month)->whereYear('created_at', now()->subMonth()->year)->count();
+        $adsPercentageChange = ($previousMonthAds > 0) ? (($currentMonthAds - $previousMonthAds) / $previousMonthAds) * 100 : 0;
 
-        $adsPercentageChange = 0;
-        if ($previousMonthAds > 0) {
-            $adsPercentageChange = (($currentMonthAds - $previousMonthAds) / $previousMonthAds) * 100;
-        }
+        $currentMonthUsers = User::whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
+        $previousMonthUsers = User::whereMonth('created_at', now()->subMonth()->month)->whereYear('created_at', now()->subMonth()->year)->count();
+        $usersPercentageChange = ($previousMonthUsers > 0) ? (($currentMonthUsers - $previousMonthUsers) / $previousMonthUsers) * 100 : 0;
 
-        // Calcul du nombre d'utilisateurs du mois en cours
-        $currentMonthUsers = User::whereMonth('created_at', now()->month)
-                                ->whereYear('created_at', now()->year)
-                                ->count();
+        // Nouveaux KPI
+        $totalUsers = User::count();
+        $totalAds = Ad::count();
+        $pendingAds = Ad::where('is_approved', false)->count();
 
-        // Calcul du nombre d'utilisateurs du mois précédent
-        $previousMonthUsers = User::whereMonth('created_at', now()->subMonth()->month)
-                                ->whereYear('created_at', now()->subMonth()->year)
-                                ->count();
-        
-        // Calcul du pourcentage de changement des utilisateurs
-        $usersPercentageChange = 0;
-        if ($previousMonthUsers > 0) {
-            $usersPercentageChange = (($currentMonthUsers - $previousMonthUsers) / $previousMonthUsers) * 100;
-        }
+        $adsApprovalRate = ($totalAds > 0) ? ($totalAds - $pendingAds) / $totalAds * 100 : 0;
 
-        return view('admin.dashboard', compact('recentAds', 'recentUsers', 'currentMonthAds', 'adsPercentageChange', 'currentMonthUsers', 'usersPercentageChange'));
+        // Annonces les plus populaires (basé sur le nombre de rendez-vous)
+        $popularAds = Ad::withCount('appointments')->orderBy('appointments_count', 'desc')->take(5)->get();
+
+        return view('admin.dashboard', compact(
+            'recentAds',
+            'latestRatings',
+            'recentUsers',
+            'currentMonthAds',
+            'adsPercentageChange',
+            'currentMonthUsers',
+            'usersPercentageChange',
+            'totalUsers',
+            'totalAds',
+            'pendingAds',
+            'adsApprovalRate',
+            'popularAds'
+        ));
     }
 }

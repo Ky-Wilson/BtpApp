@@ -96,7 +96,8 @@
                     </table>
                 </div>
                 <div class="mt-4">
-{{ $users->links('vendor.pagination.bootstrap-5') }}                </div>
+                    {{ $users->links() }}                
+                </div>
             </div>
         </div>
     </div>

@@ -127,36 +127,49 @@
               </a>
             </li>
             <li class="sidebar-item">
-    <a class="sidebar-link" href="{{ route('notifications.users.index') }}" aria-expanded="false">
-        <span>
-            <i class="ti ti-user-plus"></i>
-        </span>
-        <span class="hide-menu">
-            Notifications
-            @if(isset($unreadCount) && $unreadCount > 0)
-                <span class="badge bg-danger rounded-pill">{{ $unreadCount }}</span>
-            @endif
-        </span>
-    </a>
-</li>
+                <a class="sidebar-link" href="{{ route('notifications.users.index') }}" aria-expanded="false">
+                    <span>
+                        <i class="ti ti-user-plus"></i>
+                    </span>
+                    <span class="hide-menu">
+                        Notifications utilisateurs 
+                        @if(isset($unreadCount) && $unreadCount > 0)
+                            <span class="badge bg-danger rounded-pill">{{ $unreadCount }}</span>
+                        @endif
+                    </span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('notifications.ads.index') }}" aria-expanded="false">
+                    <span>
+                        <i class="ti ti-user-plus"></i>
+                    </span>
+                    <span class="hide-menu">
+                        Notifications Annonces
+                        @if(isset($unreadCount) && $unreadCount > 0)
+                            <span class="badge bg-danger rounded-pill">{{ $unreadCount }}</span>
+                        @endif
+                    </span>
+                </a>
+            </li>
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">EXTRA</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('admin.stats.index') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-mood-happy"></i>
                 </span>
-                <span class="hide-menu">Icons</span>
+                <span class="hide-menu">Statistiques</span>
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('admin.appointments.index') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-aperture"></i>
                 </span>
-                <span class="hide-menu">Sample Page</span>
+                <span class="hide-menu">Rdv</span>
               </a>
             </li>
           </ul>

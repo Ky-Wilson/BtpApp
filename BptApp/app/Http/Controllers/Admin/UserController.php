@@ -21,8 +21,17 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(2); // Modifié pour paginer 2 utilisateurs par page
+        $users = User::paginate(10); // Modifié pour paginer 2 utilisateurs par page
         return view('admin.users.index', compact('users'));
+    }
+
+    public function stats()
+    {
+ $users = User::withCount(['ads', 'ratings'])
+                     ->withAvg('ratings', 'score')
+                     ->paginate(15);
+
+        return view('admin.users.stats', compact('users'));
     }
 
     /**

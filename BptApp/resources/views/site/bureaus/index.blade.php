@@ -166,7 +166,7 @@
                                                         <p class="text-dark fs-6 fw-bold mb-0">
                                                             <i class="fa fa-tag me-2"></i>{{ number_format($ad->price, 0, ',', ' ') }} F CFA
                                                         </p>
-                                                        <a href="{{ route('bureaus.show', $ad) }}" class="btn border border-secondary rounded-pill px-3 text-primary">
+                                                        <a href="{{ route('bureaux.show', $ad) }}" class="btn border border-secondary rounded-pill px-3 text-primary">
                                                             <i class="fa fa-eye me-2 text-primary"></i> Voir
                                                         </a>                                            
                                                     </div>
@@ -284,12 +284,12 @@
                     </div>
                     <div class="d-flex flex-column justify-content-between flex-grow-1">
                         <div>
-                            <a href="{{ route('bureaus.show', $ad) }}" class="h5">{{ $ad->title }}</a>
+                            <a href="{{ route('bureaux.show', $ad) }}" class="h5">{{ $ad->title }}</a>
                             <p class="text-muted small my-1"><i class="fa fa-map-marker-alt me-2"></i>{{ $ad->location }}</p>
                         </div>
                         <div class="mt-auto">
                             <h4 class="mb-3">{{ number_format($ad->price, 0, ',', ' ') }} F CFA</h4>
-                            <a href="{{ route('bureaus.show', $ad) }}" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-eye me-2 text-primary"></i> Voir</a>
+                            <a href="{{ route('bureaux.show', $ad) }}" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-eye me-2 text-primary"></i> Voir</a>
                         </div>
                     </div>
                 </div>

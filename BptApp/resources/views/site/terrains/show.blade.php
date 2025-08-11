@@ -41,6 +41,8 @@
                     <div class="col-lg-6">
                         <h4 class="fw-bold mb-3">{{ $ad->title }}</h4>
                         <p class="mb-3">Catégorie: {{ ucfirst($ad->category->name) }}</p>
+                         <p>Nombre de vues : {{ $ad->views_count }}</p>
+
                         <p class="mb-3 badge bg-primary text-white p-2">{{ ucfirst($ad->status) }}</p>
                         <h5 class="fw-bold mb-3">{{ number_format($ad->price, 0, ',', ' ') }} F CFA</h5>
                         <p class="mb-4">Description: {{ $ad->description }}</p>
@@ -116,6 +118,7 @@
                         </div>
                     </div>
                 </div>
+                <x-appointment-form :ad="$ad" />
             </div>
         </div>
     </div>

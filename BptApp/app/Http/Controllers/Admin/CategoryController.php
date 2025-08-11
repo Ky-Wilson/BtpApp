@@ -11,9 +11,9 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(15);
         return view('admin.categories.index', compact('categories'));
     }
 

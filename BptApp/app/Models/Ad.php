@@ -57,5 +57,13 @@ class Ad extends Model
         // Retourne un chemin d'image par défaut si aucune image n'est trouvée
         return 'path/to/default/image.jpg'; 
     }
+
+     /**
+     * Obtenir les rendez-vous associés à cette annonce.
+     */
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
    
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use App\Models\Ad;
 use App\Models\Category;
+use App\Models\User;
+use App\Notifications\NewAdPostedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -20,10 +22,10 @@ class AdController extends Controller
      * Affiche la liste des annonces de l'utilisateur connecté.
      */
     public function index()
-    {
-        $ads = Ad::where('user_id', Auth::id())->with('category')->get();
-        return view('users.ads.index', compact('ads'));
-    }
+{
+    $ads = Ad::where('user_id', Auth::id())->with('category')->paginate(15);
+    return view('users.ads.index', compact('ads'));
+}
 
     /**
      * Affiche le formulaire de création.
@@ -59,17 +61,26 @@ class AdController extends Controller
             'phone_number' => 'nullable|string|max:255',
         ]);
 
-        $validatedData['user_id'] = Auth::id();
-        $validatedData['is_approved'] = false;
+         $validatedData['user_id'] = Auth::id();
+    $validatedData['is_approved'] = false;
 
-        $validatedData['images'] = $this->uploadFiles($request, 'images', 'ads/images');
-        $validatedData['videos'] = $this->uploadFiles($request, 'videos', 'ads/videos');
-        $validatedData['documents'] = $this->uploadFiles($request, 'documents', 'ads/documents');
+    $validatedData['images'] = $this->uploadFiles($request, 'images', 'ads/images');
+    $validatedData['videos'] = $this->uploadFiles($request, 'videos', 'ads/videos');
+    $validatedData['documents'] = $this->uploadFiles($request, 'documents', 'ads/documents');
 
-        Ad::create($validatedData);
+    // L'annonce est créée ici, la variable $ad est maintenant disponible
+    $ad = Ad::create($validatedData);
 
-        return redirect()->route('users.ads.index')->with('success', 'Annonce créée et en attente de validation.');
+    // Récupérer l'administrateur
+    $admin = User::where('role', 'admin')->first();
+
+    // Si un administrateur est trouvé, on lui envoie la notification
+    if ($admin) {
+        $admin->notify(new NewAdPostedNotification($ad));
     }
+    
+    return redirect()->route('users.ads.index')->with('success', 'Annonce créée et en attente de validation.');
+}
     /**
      * Affiche une annonce spécifique.
      */
@@ -79,8 +90,11 @@ class AdController extends Controller
         if (!$ad->is_approved && $ad->user_id !== Auth::id()) {
             abort(404);
         }
+        // Incrémente le compteur de vues de l'annonce
+        $ad->increment('views_count');
         
         $ad->load('user', 'category');
+        
         return view('users.ads.show', compact('ad'));
     }
     /**
