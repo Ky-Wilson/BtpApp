@@ -18,7 +18,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link nav-icon-hover d-flex align-items-center gap-2" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
                         @if(Auth::user()->logo)
-                            <img src="{{ asset('storage/' . Auth::user()->logo) }}" alt="Logo utilisateur" width="35" height="35" class="rounded-circle">
+                            <img src="{{ asset(path: 'storage/' . Auth::user()->logo) }}" alt="Logo utilisateur" width="35" height="35" class="rounded-circle">
                         @else
                             <img src="{{ asset('assets/images/profile/user-1.jpg') }}" alt="Logo par défaut" width="35" height="35" class="rounded-circle">
                         @endif

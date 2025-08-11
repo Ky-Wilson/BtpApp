@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Admin\BaseController; // Importez le BaseController
 
 use App\Models\Ad;
 use App\Models\User;
