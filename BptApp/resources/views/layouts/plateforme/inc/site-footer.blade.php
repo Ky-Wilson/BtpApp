@@ -3,7 +3,7 @@
         <div class="pb-4 mb-4" style="border-bottom: 1px solid rgba(226, 175, 24, 0.5);">
             <div class="row g-4">
                 <div class="col-lg-3">
-                    <a href="{{-- {{ route('home') }} --}}">
+                    <a href="{{ route('bienvenue') }}">
                         <h1 class="text-primary mb-0">GestImmo</h1>
                         <p class="text-secondary mb-0">Votre partenaire immobilier</p>
                     </a>
@@ -24,7 +24,6 @@
                 <div class="footer-item">
                     <h4 class="text-light mb-3">À propos de nous</h4>
                     <p class="mb-4">GestImmo est votre plateforme dédiée pour trouver, vendre ou louer des biens immobiliers. Nous connectons acheteurs, vendeurs et locataires de manière simple et efficace.</p>
-                    <a href="#" class="btn border-secondary py-2 px-4 rounded-pill text-primary">En savoir plus</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
@@ -35,7 +34,7 @@
                     <a class="btn-link" href="{{ route('immeubles.index') }}">Immeubles</a>
                     <a class="btn-link" href="{{ route('bureaux.index') }}">Bureaux</a>
                     <a class="btn-link" href="{{ route('terrains.index') }}">Terrains</a>
-                    <a class="btn-link" href="#">Besoin d'assistance</a>
+                    <a class="btn-link" href="{{ route('contact.show') }}">Besoin d'assistance ?</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
@@ -49,10 +48,10 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="footer-item">
-                    <h4 class="text-light mb-3">Contact</h4>
-                    <p>Adresse: 123 Street, New York</p>
+                    <h4 class="text-light mb-3">Contacts</h4>
+                    <p>Adresse: Cote d'ivoire / Daloa</p>
                     <p>Email: Email@Example.com</p>
-                    <p>Téléphone: +0123 4567 8910</p>
+                    <p>Téléphone: 225 0757778799</p>
                    
                 </div>
             </div>
@@ -66,7 +65,7 @@
                 <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>GestImmo</a>, Tous droits réservés.</span>
             </div>
             <div class="col-md-6 my-auto text-center text-md-end text-white">
-                Créé par <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                Créé par <a class="border-bottom" href="https://softsmspro.com/">Softsys</a>
             </div>
         </div>
     </div>
